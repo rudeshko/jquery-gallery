@@ -88,3 +88,7 @@
         interval: 10
     }
 }(jQuery));
+
+// TODO:
+// Fix on-return constant loop
+// Add option for custom interval per item in data-interval parameter
