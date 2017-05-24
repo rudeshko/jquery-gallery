@@ -35,6 +35,14 @@
                 "data-action": "right"
             }));
 
+            if (!data.mediaClickDisabled) {
+                for (var i = 0; i < items.length; i++) {
+                    if (!$(items[i]).hasClass("dr_gallery_click_disable")) {
+                        $(items[i]).addClass("dr_gallery_media_clickable");
+                    }
+                }
+            }
+
             if (data.autoscroll) {
                 galleryInterval = setInterval(runLoop, (data.interval * 1000));
             }
@@ -47,8 +55,6 @@
                 return;
             }
 
-            clearInterval(galleryInterval);
-
             var action = $this.attr("data-action");
 
             if (action != undefined && action == "left") {
@@ -59,7 +65,7 @@
 
                 currentIndex = prevIndex;
             } else {
-                if (action == undefined && $this.hasClass("dr_gallery_click_disable")) {
+                if (action == undefined && ($this.hasClass("dr_gallery_click_disable") || data.mediaClickDisabled)) {
                     return;
                 }
 
@@ -71,7 +77,10 @@
                 currentIndex = nextIndex;
             }
 
-            galleryInterval = setInterval(runLoop, (data.interval * 1000));
+            if (data.autoscroll) {
+                clearInterval(galleryInterval);
+                galleryInterval = setInterval(runLoop, (data.interval * 1000));
+            }
         });
     };
 
@@ -85,10 +94,7 @@
 
     $.fn.dr_gallery.defaults = {
         autoscroll: true,
-        interval: 10
+        interval: 10,
+        mediaClickDisabled: false
     }
 }(jQuery));
-
-// TODO:
-// Fix on-return constant loop
-// Add option for custom interval per item in data-interval parameter
