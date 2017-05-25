@@ -1,6 +1,6 @@
 ## jQuery-Based Gallery for Images, Videos, etc.
 
-Adds a simple gallery to your site. Supports any HTML element
+Adds a simple gallery to your site. Supports any HTML element.
 
 ## Requirements
 
@@ -15,7 +15,8 @@ Adds a simple gallery to your site. Supports any HTML element
 
 1. `autoscroll` - Default: Boolean true; Whether gallery should autoscroll through the items using time interval.
 1. `interval` - Default: Int 10; If 'autoscroll' is true, scroll after this number of seconds to the next slide.
-1. `mediaClickDisabled` - Default: Boolean false; Global boolean to disable 'next' feature by clicking anywhere on the media item.
+1. `mediaClickDisabled` - Default: Boolean false; Global boolean to disable 'go to next item' feature by clicking anywhere on the media item.
+1. `showNav` - Default: Boolean true; Whether navigation bar should be shown at the bottom of the gallery.
 
 ## How To Use
 
@@ -44,7 +45,8 @@ Adds a simple gallery to your site. Supports any HTML element
 $(".test-gallery").dr_gallery({
     autoscroll: true,
     interval: 10,
-    mediaClickDisabled: false
+    mediaClickDisabled: false,
+    showNav: true
 });
 </script>
 ```
